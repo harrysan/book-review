@@ -8,10 +8,21 @@ This is a Laravel project for managing book reviews. The website allows users to
 - Add reviews with `review` and `rating`
 - Data seeding for books and reviews
 - Rate limiting for adding books and reviews
+
   - Maximum of 5 books per hour
   - Maximum of 3 reviews per hour
 - Caching using Memcache
 - MySQL database integration
+
+  ![1728372402103](image/README/1728372402103.png "dashboard")
+
+  ![1728372420631](image/README/1728372420631.png "dashboard 2")
+
+  ![1728372388069](image/README/1728372388069.png "add book")
+
+  ![1728372446925](image/README/1728372446925.png "book page")
+
+  ![1728372461280](image/README/1728372461280.png "add review")
 
 ## Installation
 
