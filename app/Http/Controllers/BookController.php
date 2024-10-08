@@ -11,6 +11,11 @@ class BookController extends Controller
     /**
      * Display a listing of the resource.
      */
+    public function __construct()
+    {
+        $this->middleware('throttle:books')->only(['store']);
+    }
+
     public function index(Request $request)
     {
         $title = $request->input('title');
@@ -33,7 +38,7 @@ class BookController extends Controller
         // $books = $books->get();
 
         $cacheKey = 'books:' . $filter . ':' . $title;
-        $books = $books->get();
+        $books = $books->paginate(15)->withQueryString();
         // Cache::remember(
         // $cacheKey,
         // 3600,
@@ -48,7 +53,7 @@ class BookController extends Controller
      */
     public function create()
     {
-        //
+        return view('books.create');
     }
 
     /**
@@ -56,7 +61,14 @@ class BookController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'title' => 'required|min:15',
+            'author' => 'required'
+        ]);
+
+        Book::create($request->all());
+
+        return redirect()->route('books.index');
     }
 
     /**
